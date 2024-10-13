@@ -52,8 +52,8 @@ uint32_t CRSF::VersionStrToU32(const char *verStr)
     {
         retVal = (retVal << 8) | accumulator;
     }
-    // If the version ID is < 1.0.0, we could not parse it,
-    // just use the OTA version as the major version number
+    // Если идентификатор версии < 1.0.0, мы не смогли его проанализировать,
+    // просто используйте версию OTA в качестве основного номера версии
     if (retVal < 0x010000)
     {
         retVal = OTA_VERSION_ID << 16;

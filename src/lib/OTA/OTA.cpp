@@ -32,19 +32,19 @@ void OtaUpdateCrcInitFromUid()
 
 static inline uint8_t ICACHE_RAM_ATTR HybridWideNonceToSwitchIndex(uint8_t const nonce)
 {
-    // Returns the sequence (0 to 7, then 0 to 7 rotated left by 1):
+    // Возвращает последовательность (от 0 до 7, затем от 0 до 7, повернутую влево на 1):
     // 0, 1, 2, 3, 4, 5, 6, 7,
     // 1, 2, 3, 4, 5, 6, 7, 0
-    // Because telemetry can occur on every 2, 4, 8, 16, 32, 64, 128th packet
-    // this makes sure each of the 8 values is sent at least once every 16 packets
-    // regardless of the TLM ratio
-    // Index 7 also can never fall on a telemetry slot
+    // Потому что телеметрия может происходить в каждом 2, 4, 8, 16, 32, 64, 128-м пакете
+    // это гарантирует, что каждое из 8 значений будет отправлено как минимум один раз в каждых 16 пакетах
+    // независимо от коэффициента TLM
+    // Индекс 7 также никогда не может попасть в слот телеметрии
     return ((nonce & 0b111) + ((nonce >> 3) & 0b1)) % 8;
 }
 
 #if TARGET_TX || defined(UNIT_TEST)
 
-// Current ChannelData generator function being used by TX
+// Текущая функция генератора ChannelData, используемая TX
 PackChannelData_t OtaPackChannelData;
 #if defined(DEBUG_RCVR_LINKSTATS)
 static uint32_t packetCnt;

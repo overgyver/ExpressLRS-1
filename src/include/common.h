@@ -15,8 +15,8 @@
 
 #endif // UNIT_TEST
 
-// Used to XOR with OtaCrcInitializer and macSeed to reduce compatibility with previous versions.
-// It should be incremented when the OTA packet structure is modified.
+// Используется для XOR с OtaCrcInitializer и macSeed для снижения совместимости с предыдущими версиями.
+// Его следует увеличивать при изменении структуры пакета OTA.
 #define OTA_VERSION_ID      4
 #define UID_LEN             6
 
